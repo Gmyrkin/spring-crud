@@ -5,9 +5,10 @@ import ru.gmyrkin.crud.model.User;
 import java.util.List;
 
 public interface UserService {
-    User add (User user); // чтоб изм. сразу отправлялись на страницу
-    void delete (long id);
-    User edit (User user);
-    List<User> getAll ();
+    void addUser (User user); // чтоб изменения сразу отправлялись на страницу
+    void updateUser (User user);
+    User getUserId (long id);
+    List<User> getAllUser ();
+    void deleteUser (User user);
 
 }

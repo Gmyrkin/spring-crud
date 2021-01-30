@@ -1,36 +1,52 @@
 package ru.gmyrkin.crud.services;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import ru.gmyrkin.crud.dao.UserDao;
 import ru.gmyrkin.crud.model.User;
 
+import javax.transaction.Transactional;
 import java.util.List;
 
 @Service
 public class UserServiceImpl implements UserService {
+    @Autowired
     private UserDao userDao;
 
-    public UserServiceImpl(UserDao userDao) {
+    public void setUserDao(UserDao userDao) {
         this.userDao = userDao;
     }
 
     @Override
-    public User add(User user) {
-        return null;
-    }
-
-    @Override
-    public void delete(long id) {
+    @Transactional
+    public void addUser(User user) {
+        userDao.addUser(user);
 
     }
 
     @Override
-    public User edit(User user) {
-        return null;
+    @Transactional
+    public void updateUser(User user) {
+        userDao.updateUser(user);
+
+    }
+    @Override
+    @Transactional
+    public User getUserId(long id) {
+
+        return userDao.getUserId(id);
     }
 
     @Override
-    public List<User> getAll() {
-        return userDao.getAll();
+    @Transactional
+    public List<User> getAllUser() {
+
+        return userDao.getAllUsers();
     }
+
+    @Override
+    public void deleteUser(User user) {
+        userDao.deleteUser(user);
+    }
+
 }
