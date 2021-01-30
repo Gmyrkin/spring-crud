@@ -78,7 +78,7 @@ public class WebConfig implements WebMvcConfigurer {
         Properties hibernateProp = new Properties();
         hibernateProp.put("hibernate.dialect", "org.hibernate.dialect.MySQL5InnoDBDialect");
         hibernateProp.put("hibernate.show_sql", "true");
-        hibernateProp.put("hibernate.hbm2ddl.auto", "create");
+        hibernateProp.put("hibernate.hbm2ddl.auto", "update");
 
         return hibernateProp;
 

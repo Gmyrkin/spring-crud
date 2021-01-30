@@ -1,47 +1,34 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
-<html>
 <head>
     <title>Add User</title>
 </head>
 <body>
-<h1>User-form</h1>
-
-<form:form method="post" action="/admin/save" modelAttribute="user">
-    <table cellspacing="0" border="1">
+<h1>User table</h1>
+    <table cellspacing="1" border="5" cellpadding="7">
         <tr>
-            <td>ID:</td>
-            <td>
-                <c:if test="${user != null}">
-                    <input type="text" name="id" value="<c:out value='${user.id}' />"/>
-                    <form:hidden path="id"/>
-                </c:if>
-            </td>
+            <th><h3>Id</h3></th>
+            <th><h3>Name</h3></th>
+            <th><h3>Password</h3></th>
+            <th colspan="2"><h3>Action with user</h3></th>
         </tr>
-        <tr>
-            <td>User Name:</td>
-            <td><c:if test="${user != null}">
-                <input type="text" name="name" value="<c:out value='${user.name}' />"/>
-            </c:if>
-                <c:if test="${user == null}">
-                    <input type="text" name="name">
-                </c:if>
-            </td>
-        </tr>
-        <tr>
-            <td>User Password:</td>
-            <td><c:if test="${user != null}">
-                <input type="text" name="password" value="<c:out value='${user.password}' />"/>
-            </c:if>
-                <c:if test="${user == null}">
-                    <input type="text" name="password">
-                </c:if></td>
-        </tr>
+            <tr th:each="user : ${listUser}">
+                <td th:text="${user.id}"></td>
+                <td th:text="${user.name}"></td>
+                <td th:text="${user.password}"></td>
+                <td>
+                    <a th:href="${'/remove/'+user.getId()}">Delete</a>
+                </td>
+                <td>
+                    <a href="<c:url value='/updateUser/${user.id}'/>">Update</a>
+                </td>
+            </tr>
     </table>
-
     <br>
-    <input type="submit" value="Add User"/>
-</form:form>
-
+<form action="/add" method="POST">
+    Name: <input type="text" name="name">
+    Password: <input type="text" name="password">
+    <input type = "submit" value = "Create user">
+</form>
 </body>
 </html>

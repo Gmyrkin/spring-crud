@@ -22,19 +22,19 @@ public class UserController {
         this.userService = userService;
 
     }
-//    @GetMapping("/test")
-//    public String testUser (ModelMap model){
-//        model.addAttribute("user", new User(1, "Tim", "123"));
-//
-//        return "test";
-//    }
+    @GetMapping("/test")
+    public String testUser (ModelMap model){
+        model.addAttribute("user", new User(1, "Tim", "123"));
+
+        return "test";
+    }
 
     @GetMapping(value = "/user")
     public String listUsers (ModelMap model) {
        // model.addAttribute("user", new User(1,"Tim","123"));
         model.addAttribute("listUser",userService.getAllUser());
 
-        return "users";
+        return "user";
     }
 
     @PostMapping("/add")
@@ -55,9 +55,9 @@ public class UserController {
 
         return "redirect:/user";
     }
-    @RequestMapping ("/remove/{id}")
-    public String deleteUser (@ModelAttribute User user){
-        User userFind = userService.getUserId(user.getId());
+    @GetMapping ("/remove/{id}")
+    public String deleteUser (@PathVariable("id") long id){
+        User userFind = userService.getUserId(id);
         if (userFind != null){
             userService.deleteUser(userFind);
         }
