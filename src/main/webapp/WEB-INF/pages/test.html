@@ -5,12 +5,13 @@
     <title>New person</title>
 </head>
 <body>
-
-<form th:method="POST" th:action="@{/users}" th:object="${user}">
-    <label for="name">Enter name</label>
-    <input type="text" th:field="*{name}" id="name"/>
-    <br/>
-    <input type="submit" value="Create!"/>
-    <form>
+<table>
+        <tr th:each="user : ${admin}">
+            <td th:text="${user.id}"></td>
+            <td th:text="${user.name}"></td>
+            <td th:text="${user.password}"></td>
+            <td>
+        </tr>
+</table>
 </body>
 </html>

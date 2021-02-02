@@ -10,18 +10,16 @@
             <th><h3>Id</h3></th>
             <th><h3>Name</h3></th>
             <th><h3>Password</h3></th>
-            <th colspan="2"><h3>Action with user</h3></th>
+            <th colspan="2"><h3>Form with user</h3></th>
         </tr>
             <tr th:each="user : ${listUser}">
                 <td th:text="${user.id}"></td>
                 <td th:text="${user.name}"></td>
                 <td th:text="${user.password}"></td>
                 <td>
-                    <a th:href="${'/remove/'+user.getId()}">Delete</a>
+                    <a th:href="${'/remove/'+ user.getId()}">Delete</a>
                 </td>
-                <td>
-                    <a href="<c:url value='/updateUser/${user.id}'/>">Update</a>
-                </td>
+                <td><a th:href="@{/update/{id}(id=${user.id})}">Edit</a></td>
             </tr>
     </table>
     <br>
